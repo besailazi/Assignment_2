@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="./css/styles.css">
+	<title>Assignment_2</title>
+</head>
+<body>
+	<h1>Pharmacy Inventory</h1>
+	<hr/>
+	<div class="main-container">
+
+			<div class="form-container">
+				 <form class="medicineForm">
+					<label for="productName">Product Name:</label>
+					<input type="text" id="productName" required>
+					<label for="productID">Product ID:</label>
+					<input type="text" id="productID" required>
+					<label for="manufacturer">Manufacturer:</label>
+					<input type="text" id="manufacturer" required>
+					<label for="expirationDate">Expiration Date:</label>
+					<input type="date" id="expirationDate" required>
+					<label for="quantity">Quantity:</label>
+					<input type="number" id="quantity" required>
+					<button type="button" id="addMedicineBtn">Add Medicine</button>
+				 </form>
+			</div>
+		
+			<table class="medicineTable">
+				 <thead>
+					  <tr>
+							<th>Product Name:</th>
+							<th>Product ID:</th>
+							<th>Manufacturer:</th>
+							<th>Expiration Date:</th>
+							<th>Quantity:</th>
+					  </tr>
+				 </thead>
+				 <tbody class="medicineListBody"></tbody>
+			</table>
+		</div>
+	  
+
+	<script src="./js/app.js"></script>
+</body>
+</html>

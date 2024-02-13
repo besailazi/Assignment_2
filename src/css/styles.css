@@ -1,0 +1,66 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	font-family: Arial, sans-serif;
+}
+h1 {
+	font-size: 2.5rem;
+	padding: 40px;
+	text-align: center;
+}
+
+.main-container {
+	display: flex;
+	padding: 10px;
+	margin: 10px;
+	font-size: 1.2rem;
+}
+
+.form-container {
+	flex-basis: 20%;
+	padding-right: 20px;
+}
+
+.medicineTable {
+	flex: 1;
+	border-collapse: collapse;
+	width: 100%;	
+}
+
+.medicineTable th, .medicineTable td {
+	padding: 10px;
+	border: 1px solid #ddd;
+	text-align: center;
+}
+
+.medicineTable th {
+	background-color: #bae9a7;
+}
+
+.medicineTable tbody tr:nth-child(even) {
+	background-color: #bae9a7;
+}
+
+.medicineTable tbody tr:hover {
+	background-color: #ddd;
+}
+
+button {
+	background-color: #507c3e;
+	color: white;
+	border: none;
+	padding: 10px 30px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 1.2rem;
+	cursor: pointer;
+}
+
+button:hover {
+	background-color:#bae9a7 ;
+}
