@@ -49,6 +49,16 @@ h1 {
 	background-color: #ddd;
 }
 
+.medicineForm input[type="text"],
+.medicineForm input[type="date"],
+.medicineForm input[type="number"] {
+    width: calc(100% - 20px);
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
 button {
 	background-color: #507c3e;
 	color: white;
