@@ -38,7 +38,7 @@ class Medicine {
 	  const productID = this.productIDInput.value;
 	  const manufacturer = this.manufacturerInput.value;
 	  const expirationDate = this.expirationDateInput.value;
-	  const quantity = this.quantityInput.value;
+	  const quantity = Number(this.quantityInput.value); 
 	  const formType = this.formTypeInput.value;
  
 	  if (!productName || !productID || !manufacturer || !expirationDate || !quantity || !formType) {
@@ -46,14 +46,17 @@ class Medicine {
 		 return;
 	  }
  
-	  if (this.medicineList.some(medicine => medicine.productID === productID)) {
-		 this.showErrorMessage('Product ID must be unique.');
-		 return;
+	  const existingMedicineIndex = this.medicineList.findIndex(medicine => medicine.productName === productName);
+ 
+	  if (existingMedicineIndex !== -1) {
+		 
+		 this.medicineList[existingMedicineIndex].quantity += quantity;
+	  } else {
+		 
+		 const medicine = new MedicineWithForm(productName, productID, manufacturer, expirationDate, quantity, formType);
+		 this.medicineList.push(medicine);
 	  }
  
-	  const medicine = new MedicineWithForm(productName, productID, manufacturer, expirationDate, quantity, formType);
- 
-	  this.medicineList.push(medicine);
 	  localStorage.setItem('medicineList', JSON.stringify(this.medicineList));
 	  this.updateTable();
 	  this.clearInputs();
