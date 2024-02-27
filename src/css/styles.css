@@ -61,6 +61,16 @@ h1 {
     border-radius: 4px;
 }
 
+#formType {
+	width: calc(100% - 20px);
+	display: flex;
+	flex-direction: column;
+	padding: 10px;
+	margin-bottom: 10px;
+	border: 1px solid #ccc;
+	
+}
+
 button {
 	background-color: #507c3e;
 	color: white;

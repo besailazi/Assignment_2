@@ -17,3 +17,6 @@ JavaScript
  ## Sources
  https://codepen.io/trending
  https://chat.openai.com/
+
+ ## gitHub link
+ https://github.com/besailazi/Assignment_2.git

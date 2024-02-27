@@ -24,6 +24,12 @@
 					<input type="date" id="expirationDate" required>
 					<label for="quantity">Quantity:</label>
 					<input type="number" id="quantity" required>
+					<label for="formType">Form Type:</label>
+					<select id="formType" required>
+						<option value="">Select Form Type</option>
+						<option value="Tablets">Tablets</option>
+						<option value="Liquid">Liquid</option>
+					 </select>
 					<button type="button" id="addMedicineBtn">Add Medicine</button>
 				 </form>
 			</div>
@@ -31,12 +37,13 @@
 			<table class="medicineTable">
 				 <thead>
 					  <tr>
-							<th>Product Name:</th>
-							<th>Product ID:</th>
-							<th>Manufacturer:</th>
-							<th>Expiration Date:</th>
-							<th>Quantity:</th>
-							<th>Delete:</th>
+							<th>Name</th>
+							<th>Product ID</th>
+							<th>Manufacturer</th>
+							<th>Exp. Date</th>
+							<th>Quantity</th>
+							<th>Form</th>
+							<th></th>
 					  </tr>
 				 </thead>
 				 <tbody class="medicineListBody"></tbody>

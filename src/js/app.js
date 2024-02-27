@@ -9,9 +9,15 @@ class Medicine {
 	}
  }
  
- class PharmacyInventory extends Medicine {
+ class MedicineWithForm extends Medicine {
+	constructor(productName, productID, manufacturer, expirationDate, quantity, formType) {
+	  super(productName, productID, manufacturer, expirationDate, quantity);
+	  this.formType = formType;
+	}
+ }
+ 
+ class PharmacyInventory {
 	constructor() {
-	  super();
 	  this.medicineList = JSON.parse(localStorage.getItem('medicineList')) || [];
 	  this.addMedicineBtn = document.querySelector('#addMedicineBtn');
 	  this.productNameInput = document.querySelector('#productName');
@@ -19,6 +25,7 @@ class Medicine {
 	  this.manufacturerInput = document.querySelector('#manufacturer');
 	  this.expirationDateInput = document.querySelector('#expirationDate');
 	  this.quantityInput = document.querySelector('#quantity');
+	  this.formTypeInput = document.querySelector('#formType');
 	  this.medicineTableBody = document.querySelector('.medicineListBody');
 	  this.errorMessage = document.querySelector('#error-message');
  
@@ -32,8 +39,9 @@ class Medicine {
 	  const manufacturer = this.manufacturerInput.value;
 	  const expirationDate = this.expirationDateInput.value;
 	  const quantity = this.quantityInput.value;
+	  const formType = this.formTypeInput.value;
  
-	  if (!productName || !productID || !manufacturer || !expirationDate || !quantity) {
+	  if (!productName || !productID || !manufacturer || !expirationDate || !quantity || !formType) {
 		 this.showErrorMessage('Please fill out all fields.');
 		 return;
 	  }
@@ -43,7 +51,7 @@ class Medicine {
 		 return;
 	  }
  
-	  const medicine = new Medicine(productName, productID, manufacturer, expirationDate, quantity);
+	  const medicine = new MedicineWithForm(productName, productID, manufacturer, expirationDate, quantity, formType);
  
 	  this.medicineList.push(medicine);
 	  localStorage.setItem('medicineList', JSON.stringify(this.medicineList));
@@ -62,12 +70,13 @@ class Medicine {
 			<td>${medicine.manufacturer}</td>
 			<td>${medicine.expirationDate}</td>
 			<td>${medicine.quantity}</td>
+			<td>${medicine.formType}</td>
 			<td><button class="deleteBtn" data-index="${index}">Delete</button></td>
 		 `;
 		 this.medicineTableBody.appendChild(row);
 	  });
  
-	  // ADD LISTENERS TO THE DELETE BUTTONS
+	  // Attach event listeners to delete buttons
 	  const deleteButtons = document.querySelectorAll('.deleteBtn');
 	  deleteButtons.forEach(button => {
 		 button.addEventListener('click', event => {
@@ -89,6 +98,7 @@ class Medicine {
 	  this.manufacturerInput.value = '';
 	  this.expirationDateInput.value = '';
 	  this.quantityInput.value = '';
+	  this.formTypeInput.value = '';
 	  this.clearErrorMessage();
 	}
  
