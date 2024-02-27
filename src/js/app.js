@@ -34,34 +34,42 @@ class Medicine {
 	}
  
 	addMedicine() {
-	  const productName = this.productNameInput.value;
-	  const productID = this.productIDInput.value;
-	  const manufacturer = this.manufacturerInput.value;
-	  const expirationDate = this.expirationDateInput.value;
-	  const quantity = Number(this.quantityInput.value); 
-	  const formType = this.formTypeInput.value;
- 
-	  if (!productName || !productID || !manufacturer || !expirationDate || !quantity || !formType) {
-		 this.showErrorMessage('Please fill out all fields.');
-		 return;
-	  }
- 
-	  const existingMedicineIndex = this.medicineList.findIndex(medicine => medicine.productName === productName);
- 
-	  if (existingMedicineIndex !== -1) {
-		 
-		 this.medicineList[existingMedicineIndex].quantity += quantity;
-	  } else {
-		 
-		 const medicine = new MedicineWithForm(productName, productID, manufacturer, expirationDate, quantity, formType);
-		 this.medicineList.push(medicine);
-	  }
- 
-	  localStorage.setItem('medicineList', JSON.stringify(this.medicineList));
-	  this.updateTable();
-	  this.clearInputs();
-	}
- 
+		const productName = this.productNameInput.value;
+		const productID = this.productIDInput.value;
+		const manufacturer = this.manufacturerInput.value;
+		const expirationDate = this.expirationDateInput.value;
+		const quantity = Number(this.quantityInput.value); 
+		const formType = this.formTypeInput.value;
+	 
+		if (!productName || !productID || !manufacturer || !expirationDate || !quantity || !formType) {
+		  this.showErrorMessage('Please fill out all fields.');
+		  return;
+		}
+	 
+		const existingProductIndex = this.medicineList.findIndex(medicine => medicine.productID === productID);
+		if (existingProductIndex !== -1) {
+		  this.showErrorMessage('Product ID must be unique.');
+		  return;
+		}
+	 
+		const existingMedicineIndex = this.medicineList.findIndex(medicine => medicine.productName === productName);
+	 
+		if (existingMedicineIndex !== -1) {
+		  
+		  this.medicineList[existingMedicineIndex].quantity += quantity;
+		} else {
+		  
+		  const medicine = new MedicineWithForm(productName, productID, manufacturer, expirationDate, quantity, formType);
+		  this.medicineList.push(medicine);
+		}
+	 
+		localStorage.setItem('medicineList', JSON.stringify(this.medicineList));
+		this.updateTable();
+		this.clearInputs();
+		this.clearErrorMessage(); 
+	 }
+	
+	
 	updateTable() {
 	  this.medicineTableBody.innerHTML = '';
  

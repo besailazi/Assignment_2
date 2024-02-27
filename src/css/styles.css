@@ -87,6 +87,10 @@ button:hover {
 	background-color:#bae9a7 ;
 }
 
+#error-message {
+	color: red;
+ }
+
 @media screen and (max-width: 768px) {
 	.main-container {
 		 flex-direction: column;
