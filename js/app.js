@@ -26,7 +26,9 @@ class PharmacyInventory {
 	  this.formTypeInput = document.querySelector('#formType');
 	  this.medicineTableBody = document.querySelector('.medicineListBody');
 	  this.errorMessage = document.querySelector('#error-message');
- 
+     this.counter = 1; // Initialize counter
+
+
 	  this.addMedicineBtn.addEventListener('click', (event) => {
 		event.preventDefault(); 
 		this.addMedicine();
@@ -70,10 +72,13 @@ class PharmacyInventory {
 	
 	updateTable() {
 	  this.medicineTableBody.innerHTML = '';
+	  this.counter = 1;
+
  
 	  this.medicineList.forEach((medicine, index) => {
 		 const row = document.createElement('tr');
 		 row.innerHTML = `
+		   <td>${this.counter}</td>
 			<td>${medicine.productName}</td>
 			<td>${medicine.manufacturer}</td>
 			<td>${medicine.expirationDate}</td>
@@ -82,6 +87,7 @@ class PharmacyInventory {
 			<td><button class="deleteBtn" data-index="${index}">Delete</button></td>
 		 `;
 		 this.medicineTableBody.appendChild(row);
+		 this.counter++;
 	  });
  
 	  // ADD EVENTLISTENERS TO THE DELETE BUTTON
