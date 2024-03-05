@@ -7,11 +7,22 @@
 body {
 	font-family: Arial, sans-serif;
 }
-h1 {
+
+.header {
+	display: flex;
+	align-items: center;
+ }
+ 
+ .header h1 {
 	font-size: 2.5rem;
-	padding: 40px;
-	text-align: center;
-}
+	padding: 60px;
+	margin: 0 100px;
+ }
+ 
+ .header img {
+	max-width: 200px; 
+	height: auto;
+ }
 
 .main-container {
 	display: flex;
@@ -35,7 +46,7 @@ h1 {
 
 .medicineTable th, .medicineTable td {
 	padding: 10px;
-	border: 1px solid #507c3e;
+	border: 1px solid #060c30;
 	text-align: center;
 	font-size: 1.2rem;
 }
@@ -46,11 +57,11 @@ h1 {
 }
 
 .medicineTable th {
-	background-color: #bae9a7;
+	background-color: #a3b4d0;
 }
 
 .medicineTable tbody tr:nth-child(even) {
-	background-color: #bae9a7;
+	background-color: #a3b4d0;
 }
 
 .medicineTable tbody tr:hover {
@@ -78,7 +89,7 @@ h1 {
 }
 
 button {
-	background-color: #507c3e;
+	background-color: #060c30;
 	color: white;
 	border: none;
 	padding: 10px 20px;
@@ -90,7 +101,7 @@ button {
 }
 
 button:hover {
-	background-color:#bae9a7 ;
+	background-color:#a3b4d0a7 ;
 }
 
 #error-message {
@@ -116,11 +127,24 @@ button:hover {
  }
 
 @media screen and (max-width: 768px) {
+
+	.header h1{
+		font-size: 2rem;
+		padding: 30px;
+		margin: 0 20px;
+	}
+
+	.header img {
+		max-width: 150px; 
+		height: auto;
+		margin-right: 40px;
+	 }
+
 	.main-container {
 		 flex-direction: column;
 		 align-items: center;
 	}
-
+   
 	.form-container {
 		 flex-basis: 50%;
 		 padding-right: 0;
