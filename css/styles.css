@@ -40,6 +40,11 @@ h1 {
 	font-size: 1.2rem;
 }
 
+.medicineTable th:nth-child(2),
+.medicineTable td:nth-child(2) {
+	display: none;
+}
+
 .medicineTable th {
 	background-color: #bae9a7;
 }
@@ -76,11 +81,11 @@ button {
 	background-color: #507c3e;
 	color: white;
 	border: none;
-	padding: 10px 30px;
+	padding: 10px 20px;
 	text-align: center;
 	text-decoration: none;
 	display: inline-block;
-	font-size: 1.2rem;
+	font-size: 1rem;
 	cursor: pointer;
 }
 
