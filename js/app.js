@@ -26,7 +26,8 @@ class PharmacyInventory {
 	  this.formTypeInput = document.querySelector('#formType');
 	  this.medicineTableBody = document.querySelector('.medicineListBody');
 	  this.errorMessage = document.querySelector('#error-message');
-     this.counter = 1; // Initialize counter
+     this.itemCounter = document.querySelector('.item-counter');
+     this.counter = 1; 
 
 
 	  this.addMedicineBtn.addEventListener('click', (event) => {
@@ -51,19 +52,18 @@ class PharmacyInventory {
 			const existingMedicineIndex = this.medicineList.findIndex(medicine => medicine.productName === productName);
 	 
 			if (existingMedicineIndex !== -1) {
-			  
 			  this.medicineList[existingMedicineIndex].quantity += quantity;
+			  this.showMessage('Item added');
 			} else { 
-				
-
 			 const productID = this.generateProductID(); 
 		    const medicine = new MedicineWithForm(productName, manufacturer, expirationDate, quantity, formType, productID);
 		    this.medicineList.push(medicine);
+			 this.showMessage('Item added');
 
 			}
 
 		  
-
+	   this.updateCounter();
 		localStorage.setItem('medicineList', JSON.stringify(this.medicineList));
 		this.updateTable();
 		this.clearInputs();
@@ -104,6 +104,8 @@ class PharmacyInventory {
 	  this.medicineList.splice(index, 1);
 	  localStorage.setItem('medicineList', JSON.stringify(this.medicineList));
 	  this.updateTable();
+	  this.updateCounter();
+	  this.showMessage('Item removed');
 	}
  
 	clearInputs() {
@@ -126,6 +128,26 @@ class PharmacyInventory {
 	generateProductID() { 
 	  return Math.random().toString(36).slice(2, 11); 
 	}
+
+	showMessage(message) {
+		const messageElement = document.createElement('div');
+		messageElement.textContent = message;
+		messageElement.classList.add('message');
+		document.body.appendChild(messageElement);
+ 
+		setTimeout(() => {
+		 messageElement.remove();
+		}, 3000);
+	 }
+
+	 updateCounter() {
+		const itemCount = this.medicineList.length;
+		if (itemCount === 1) {
+		  this.itemCounter.textContent = `1 Item added`;
+		} else {
+		  this.itemCounter.textContent = `${itemCount} Items added`;
+		}
+	 }
 }
  
 const pharmacyInventory = new PharmacyInventory();
