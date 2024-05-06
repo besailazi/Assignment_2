@@ -41,34 +41,38 @@ class PharmacyInventory {
 		const productName = this.productNameInput.value;
 		const manufacturer = this.manufacturerInput.value;
 		const expirationDate = this.expirationDateInput.value;
-		const quantity = Number(this.quantityInput.value); 
+		const quantity = Number(this.quantityInput.value);
 		const formType = this.formTypeInput.value;
-	 
+  
 		if (!productName || !manufacturer || !expirationDate || !quantity || !formType) {
-		  this.showErrorMessage('Please fill out all fields.');
-		  return;
-	   }
-
-			const existingMedicineIndex = this.medicineList.findIndex(medicine => medicine.productName === productName);
-	 
-			if (existingMedicineIndex !== -1) {
-			  this.medicineList[existingMedicineIndex].quantity += quantity;
-			  this.showMessage('Item added');
-			} else { 
-			 const productID = this.generateProductID(); 
-		    const medicine = new MedicineWithForm(productName, manufacturer, expirationDate, quantity, formType, productID);
-		    this.medicineList.push(medicine);
+			 this.showErrorMessage('Please fill out all fields.');
+			 return;
+		}
+  
+		let existingMedicine = this.medicineList.find(medicine => medicine.productName === productName);
+  
+		if (existingMedicine) {
+			 // Update the existing medicine's details and quantity
+			 existingMedicine.manufacturer = manufacturer;
+			 existingMedicine.expirationDate = expirationDate;
+			 existingMedicine.quantity += quantity;
+			 existingMedicine.formType = formType;
+			 this.showMessage('Item details updated');
+		} else {
+			 const productID = this.generateProductID();
+			 const medicine = new MedicineWithForm(productName, manufacturer, expirationDate, quantity, formType, productID);
+			 this.medicineList.push(medicine);
 			 this.showMessage('Item added');
-
-			}
-
-		  
-	   this.updateCounter();
+		}
+  
+		this.updateCounter();
 		localStorage.setItem('medicineList', JSON.stringify(this.medicineList));
 		this.updateTable();
 		this.clearInputs();
-		this.clearErrorMessage(); 
-	}
+		this.clearErrorMessage();
+  }
+  
+  
 	
 	updateTable() {
 	  this.medicineTableBody.innerHTML = '';
@@ -137,7 +141,7 @@ class PharmacyInventory {
  
 		setTimeout(() => {
 		 messageElement.remove();
-		}, 3000);
+		}, 2000);
 	 }
 
 	 updateCounter() {
